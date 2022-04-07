@@ -29,4 +29,8 @@ Route::get('/article', function () {
     return view('article');
 })->middleware('connect')->name('article');
 
+Route::get('/role', function () {
+    return view('role');
+})->middleware('roleverif')->name('role');
+
 require __DIR__.'/auth.php';
