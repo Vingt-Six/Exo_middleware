@@ -24,6 +24,9 @@ class RoleSeeder extends Seeder
             ],
             [
                 'role' => 'staff'
+            ],
+            [
+                'role' => 'Webmaster'
             ]
         ]);
     }
