@@ -11,7 +11,7 @@ class ArticleController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('roleverif')->only(['create', 'edit', 'destroy']);
+        $this->middleware(['roleverif', 'webmaster'])->only(['create', 'edit', 'destroy']);
     }
 
     /**

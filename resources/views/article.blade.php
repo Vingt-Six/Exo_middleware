@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Article') }}
             </h2>
-            @if (Auth::user()->role_id == 1)
+            @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 4)
                 <a href="/article/create">Create</a>
             @endif
         </div>
@@ -24,7 +24,7 @@
                             class="w-8 h-8 object-cover rounded-full" alt="avatar">
                         <a class="text-gray-700 text-sm mx-3" href="#">{{ $article->author }}</a>
                     </div>
-                    @if (Auth::user()->role_id == 1)
+                    @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 4)
                         <a href="/article/{{ $article->id }}/edit" class="font-light text-sm text-green-600">Edit</a>
                         <form action="/article/{{ $article->id }}" method="POST">
                             @csrf

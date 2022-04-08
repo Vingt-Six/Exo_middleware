@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,9 +27,10 @@ Route::get('/acceuil', function () {
     return view('acceuil');
 })->middleware('connect')->name('acceuil');
 
-Route::get('/role', function () {
-    return view('role');
-})->middleware('roleverif')->name('role');
+Route::get('/user', function () {
+    $users = User::all();
+    return view('user', compact('users'));
+})->middleware('roleverif')->name('user');
 
 require __DIR__.'/auth.php';
 
