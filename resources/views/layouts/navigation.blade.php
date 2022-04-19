@@ -33,7 +33,7 @@
                 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('user')" :active="request()->routeIs('user')">
+                    <x-nav-link href="/user" :active="request()->is('user')">
                         {{ __('User') }}
                     </x-nav-link>
                 </div>

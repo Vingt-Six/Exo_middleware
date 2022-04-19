@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -27,10 +28,10 @@ Route::get('/acceuil', function () {
     return view('acceuil');
 })->middleware('connect')->name('acceuil');
 
-Route::get('/user', function () {
-    $users = User::all();
-    return view('user', compact('users'));
-})->middleware('roleverif')->name('user');
+Route::get('/user', [UserController::class, 'index'])->name('user');
+Route::get('/user/{id}/edit', [UserController::class, 'edit']);
+Route::put('/user/{id}/update', [UserController::class, 'update']);
+Route::delete('/user/delete/{id}', [UserController::class, 'destroy']);
 
 require __DIR__.'/auth.php';
 

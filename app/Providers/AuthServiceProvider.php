@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
@@ -26,7 +27,11 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('redac-delete', function($user, $article){
-            return $user->role_id == 5 && $user->id == $article->user_id;
+            return $user->role_id == 5 && $user->id == $article->user_id || $user->role_id == 1; 
+        });
+
+        Gate::define('user-admin', function($user, $item){
+            return $user->role_id == 1 && $item->role_id != 1;
         });
     }
 }
