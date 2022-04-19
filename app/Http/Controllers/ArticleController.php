@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['roleverif', 'webmaster'])->only(['create', 'edit', 'destroy']);
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('webmaster')->only(['create', 'edit', 'destroy']);
+    // }
 
     /**
      * Display a listing of the resource.
@@ -44,8 +44,9 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $store = new Article();
-        $store->author = $request->author;
+        $store->author = Auth::user()->name;
         $store->article = $request->article;
+        $store->user_id = Auth::user()->id;
         $store->save();
         return redirect('/article');
     }
@@ -69,6 +70,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
+        $this->authorize('redac-delete', $article);
         return view('pages.editarticle', compact('article'));
     }
 
@@ -81,7 +83,6 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        $article->author = $request->author;
         $article->article = $request->article;
         $article->save();
         return redirect('/article');
@@ -95,6 +96,7 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
+        $this->authorize('redac-delete', $article);
         $article->delete();
         return redirect('/article');
     }

@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'connect' => \App\Http\Middleware\Connect::class,
         'roleverif' => \App\Http\Middleware\roleverif::class,
         'webmaster' => \App\Http\Middleware\WebmasterVerif::class,
+        'editor' => \App\Http\Middleware\editor::class,
     ];
 }

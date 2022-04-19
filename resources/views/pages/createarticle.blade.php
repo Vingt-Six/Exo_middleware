@@ -11,15 +11,6 @@
             <h1 class="text-xl font-semibold">Create a article</h1>
             <form class="mt-6" action="/article" method="POST">
                 @csrf
-                <div class="flex justify-between gap-3">
-                    <span class="w-1/2">
-                        <label for="firstname"
-                            class="block text-xs font-semibold text-gray-600 uppercase">Author</label>
-                        <input id="firstname" type="text" name="author" placeholder="John-Bertrand" autocomplete="given-name"
-                            class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
-                            required />
-                    </span>
-                </div>
                 <label for="email" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Article</label>
                 <textarea name="article" id="" cols="30" rows="5" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"></textarea>
                 <button type="submit"

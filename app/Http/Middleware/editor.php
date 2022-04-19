@@ -2,11 +2,12 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Article;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class roleverif
+class editor
 {
     /**
      * Handle an incoming request.
@@ -17,7 +18,9 @@ class roleverif
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->role_id == 1) {
+        $id = $request->route('id');
+        $article = Article::find($id);
+        if (Auth::user()->role_id == 5 && $article->user_id == Auth::user()->id) {
             return $next($request);
         } else {
             return redirect()->back();
