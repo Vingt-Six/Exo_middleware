@@ -27,11 +27,15 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('redac-delete', function($user, $article){
-            return $user->role_id == 5 && $user->id == $article->user_id || $user->role_id == 1; 
+            return $user->role_id == 5 && $user->id == $article->user_id || $user->role_id != 5; 
         });
 
         Gate::define('user-admin', function($user, $item){
-            return $user->role_id == 1 && $item->role_id != 1;
+            return $user->role_id == 1 && $item->role_id != 1 || $user->role_id == 4 && $item->role_id != 4 && $item->role_id != 1;
+        });
+
+        Gate::define('role-hide', function($user, $role){
+            return $user->role_id == 4 && $role->id != 4 && $role->id != 1;
         });
     }
 }
