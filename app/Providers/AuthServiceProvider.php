@@ -35,7 +35,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('role-hide', function($user, $role){
-            return $user->role_id == 4 && $role->id != 4 && $role->id != 1;
+            return $user->role_id == 4 && $role->id != 4 && $role->id != 1 || $user->role_id == 1;
         });
     }
 }
