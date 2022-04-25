@@ -16,14 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('acceuil')" :active="request()->routeIs('acceuil')">
-                        {{ __('Acceuil') }}
-                    </x-nav-link>
-                </div>
-
+                
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/article" :active="request()->is('article')">
@@ -37,15 +30,22 @@
                         {{ __('User') }}
                     </x-nav-link>
                 </div>
-
+                
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/contact" :active="request()->is('contact')">
                         {{ __('Contact') }}
                     </x-nav-link>
                 </div>
+                
+                <!-- Navigation Links -->
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('emails')" :active="request()->routeIs('emails')">
+                        {{ __('Emails') }}
+                    </x-nav-link>
+                </div>
             </div>
-
+            
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <x-dropdown align="right" width="48">

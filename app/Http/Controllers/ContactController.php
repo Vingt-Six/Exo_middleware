@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Mail\IntroMail;
 use App\Models\Contact;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Mockery\Matcher\Subset;
 
 class ContactController extends Controller
 {
@@ -17,7 +19,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view('pages.email.intromail');
+        $subjects = Subject::all();
+        return view('pages.email.intromail', compact('subjects'));
     }
 
     /**
@@ -41,6 +44,7 @@ class ContactController extends Controller
         $store = new Contact();
         $store -> email = $request -> email;
         $store -> text = $request -> text;
+        $store -> subject_id = $request -> subject_id;
         $store -> user_id = Auth::user()->id;
         $store -> save();
         
@@ -49,7 +53,8 @@ class ContactController extends Controller
             "text" => $request -> text
         ), function($message) use ($request) {
             $message -> from ($request -> email);
-            $message -> to("hello@example.com", 'Johan')->subject('exo 2');
+            $subject = Subject::all();
+            $message -> to("hello@example.com", 'Johan')->subject($subject[($request->subject_id) - 1]->subject);
         });
         return redirect('/contact');
     }

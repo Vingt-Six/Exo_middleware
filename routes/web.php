@@ -3,7 +3,9 @@
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\SendMailController;
+use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\UserController;
+use App\Models\Contact;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -26,16 +28,24 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/acceuil', function () {
-    return view('acceuil');
-})->middleware('connect')->name('acceuil');
 
+// Route page user
 Route::get('/user', [UserController::class, 'index'])->name('user');
 Route::get('/user/{id}/edit', [UserController::class, 'edit']);
 Route::put('/user/{id}/update', [UserController::class, 'update']);
 Route::delete('/user/delete/{id}', [UserController::class, 'destroy']);
 
+// Route contact
 Route::resource('contact', ContactController::class);
+
+// Route email
+Route::get('/emails', function () {
+    $emails = Contact::all();
+    return view('pages.email.email', compact('emails'));
+})->middleware('connect')->name('emails');
+
+// Route subject
+Route::resource('subject', SubjectController::class);
 
 require __DIR__.'/auth.php';
 

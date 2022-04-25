@@ -26,6 +26,17 @@
                 autocomplete="off"
             >
             </div>
+
+            <div class="flex flex-col mb-3">
+            <label for="subject">Subject</label>
+            <select name="subject_id" class="px-3 py-2 bg-gray-800 border border-gray-900 focus:border-red-500 focus:outline-none focus:bg-gray-800 focus:text-red-500">
+                <option selected>Select a subject</option>
+                @foreach ($subjects as $subject)
+                    <option value="{{ $subject -> id }}">{{ $subject -> subject }}</option>
+                @endforeach
+            </select>
+            </div>
+
             <div class="flex flex-col mb-3">
             <label for="message">Message</label>
             <textarea 
@@ -34,6 +45,7 @@
             ></textarea>
             </div>
         </div>
+
         <div class="w-full pt-3">
             <button type="submit" class="w-full bg-gray-900 border border-red-500 px-4 py-2 transition duration-50 focus:outline-none font-semibold hover:bg-red-500 hover:text-white text-xl cursor-pointer">
             Send
