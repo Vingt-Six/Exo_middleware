@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\SendMailController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +34,8 @@ Route::get('/user', [UserController::class, 'index'])->name('user');
 Route::get('/user/{id}/edit', [UserController::class, 'edit']);
 Route::put('/user/{id}/update', [UserController::class, 'update']);
 Route::delete('/user/delete/{id}', [UserController::class, 'destroy']);
+
+Route::resource('contact', ContactController::class);
 
 require __DIR__.'/auth.php';
 
