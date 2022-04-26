@@ -56,7 +56,7 @@ class ContactController extends Controller
             $subject = Subject::all();
             $message -> to("hello@example.com", 'Johan')->subject($subject[($request->subject_id) - 1]->subject);
         });
-        return redirect('/contact');
+        return redirect()->back()->with('success', 'Votre mail a été envoyer, nous reviendrons vers vous le plus vite possible');
     }
 
     /**

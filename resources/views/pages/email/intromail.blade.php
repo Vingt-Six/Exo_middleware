@@ -4,9 +4,9 @@
             {{ __('Contact') }}
         </h2>
     </x-slot>
-
+    
     <!-- component -->
-<section id="contact" class="relative w-full mt-20 text-red-500">
+    <section id="contact" class="relative w-full mt-20 text-red-500">
     
     <!-- wrapper -->
     <div class="relative p-5 lg:px-20 flex flex-col md:flex-row items-center justify-center">

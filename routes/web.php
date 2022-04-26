@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\SendMailController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\UserController;
@@ -44,8 +45,8 @@ Route::get('/emails', function () {
     return view('pages.email.email', compact('emails'));
 })->middleware('connect')->name('emails');
 
-// Route subject
-Route::resource('subject', SubjectController::class);
+// Route Newsletter
+Route::resource('newsletter', NewsletterController::class);
 
 require __DIR__.'/auth.php';
 
